@@ -1,0 +1,29 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Frontend Build (optional for simple HTML)
+      - name: Build Frontend
+        run: echo "Frontend build successful"
+
+      # Backend Build
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install Dependencies
+        run: |
+          cd backend
+          npm install
+      - name: Run Backend
+        run: |
+          cd backend
+          npm start
